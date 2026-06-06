@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en" data-bs-theme="light">
 <head>
     <title>Student Signup</title>
@@ -48,6 +48,120 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html> 
+
+
+
+  -->
+
+  {% load static %}<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Signup</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gradient-to-br from-blue-900 via-purple-900 to-black min-h-screen flex items-center justify-center">
+  
+        
+
+    <div class="w-full max-w-xl bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-white/20">
+
+        
+
+        <!-- Header -->
+        <div class="text-center mb-6">
+            <h1 class="text-3xl font-bold text-white">Student Sign Up</h1>
+            <p class="text-gray-300 text-sm mt-1">Create your account</p>
+        </div>
+
+        <div class="hidden md:block relative">
+
+                    <img src="{% static 'images/school.jpg' %}"
+                         alt="School"
+                         class="h-full w-full object-cover">
+<!-- 
+                    <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white">
+
+                        <h1 class="text-4xl font-bold mb-4">
+                            Welcome Back
+                        </h1>
+
+                        <p class="text-lg text-center px-8">
+                            School Management System
+                        </p>
+
+                    </div> -->
+
+                </div>
+
+        
+
+        <!-- Form -->
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+
+            <!-- Django form fields -->
+               <div>
+                <label class="text-white text-sm">Firstname</label>
+                <div class="mt-1">
+                    {{ form.first_name }}
+                </div>
+            </div>
+              <div>
+                <label class="text-white text-sm">Lastname</label>
+                <div class="mt-1">
+                    {{ form.last_name }}
+                </div>
+            </div>
+            <div class="text-black">
+                <label class="text-white text-sm">Username</label>
+                <div class="mt-1">
+                    {{ form.username }}
+                </div>
+            </div>
+
+            <div>
+                <label class="text-white text-sm">Email</label>
+                <div class="mt-1">
+                    {{ form.email }}
+                </div>
+            </div>
+
+            <div>
+                <label class="text-white text-sm ">Password</label>
+                <div class="mt-1">
+                    {{ form.password1 }}
+                </div>
+            </div>
+              <div>
+                <label class="text-white text-sm">Confirm Password</label>
+                <div class="mt-1">
+                    {{ form.password2 }}
+                </div>
+            </div>
+
+            <!-- Button -->
+            <button type="submit"
+                class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-xl transition duration-300">
+                Sign Up
+            </button>
+        </form>
+
+        <!-- Footer -->
+        <p class="text-center text-gray-300 text-sm mt-5">
+            Already have an account?
+            <a href="{% url 'signin' %}" class="text-yellow-300 hover:underline">Login</a>
+        </p>
+
+    </div>
 
 </body>
 </html>

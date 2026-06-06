@@ -1,110 +1,94 @@
+
+
+
 <!doctype html>
-<html lang="en" data-bs-theme="light">
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Portal</title>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet">
-
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="flex flex-col min-h-screen bg-gray-100">
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark"
-         style="background-color:#2315a2;">
-
-        <div class="container-fluid">
-
+<!-- NAVBAR -->
+<nav class="bg-gradient-to-r from-indigo-700 to-purple-700 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4">
+        
+        <div class="flex justify-between items-center h-16">
+            
             <!-- Logo -->
-            <a class="navbar-brand fs-4" href="#">
-                <i class="bi bi-people-fill"></i>
+            <a href="#" class="flex items-center gap-2 text-xl font-bold">
+                <i class="bi bi-people-fill text-2xl"></i>
                 Student Portal
             </a>
 
-            <!-- Mobile Toggle -->
-            <button class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent">
-                <span class="navbar-toggler-icon"></span>
+            <!-- Mobile button -->
+            <button id="menuBtn" class="lg:hidden text-2xl">
+                <i class="bi bi-list"></i>
             </button>
 
             <!-- Menu -->
-            <div class="collapse navbar-collapse"
-                 id="navbarSupportedContent">
-
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                    <li class="nav-item">
-                        <a class="nav-link active"
-                           href="{% url 'signin' %}">
-                            Home
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            View Student
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            Profile
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            Attendance
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            Assignments
-                        </a>
-                    </li>
-
-                </ul>
+            <ul id="menu"
+                class="hidden lg:flex gap-6 font-medium">
+                
+                <li><a href="{% url 'signin' %}" class="hover:text-yellow-300">Home</a></li>
+                <li><a href="#" class="hover:text-yellow-300">View Student</a></li>
+                <li><a href="#" class="hover:text-yellow-300">Profile</a></li>
+                <li><a href="#" class="hover:text-yellow-300">Attendance</a></li>
+                <li><a href="#" class="hover:text-yellow-300">Assignments</a></li>
 
                 <!-- Logout -->
-                <form action="{% url 'logout' %}"
-                      method="post"
-                      class="mt-2 mt-lg-0">
-                    {% csrf_token %}
-
-                    <button class="btn btn-outline-danger">
-                        <i class="bi bi-box-arrow-right"></i>
-                        Logout
-                    </button>
-                </form>
-
-            </div>
+                <li>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button class="bg-red-500 px-3 py-1 rounded hover:bg-red-600 transition">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
 
         </div>
-    </nav>
-
-    <!-- Page Content -->
-    <div class="flex-grow-1">
-        {% block base %}
-        {% endblock base %}
     </div>
+</nav>
 
-    <!-- Footer -->
-    <footer class="text-center text-white py-3"
-            style="background-color:#2315a2;">
-        Student Portal 2026 &copy; All Rights Reserved
-    </footer>
+<!-- CONTENT -->
+<div class="flex-1 p-6">
+    {% block base %}
+{% endblock base %}
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<!-- FOOTER -->
+<footer class="bg-gradient-to-r from-indigo-700 to-purple-700 text-white text-center py-4 mt-auto">
+    <p class="text-sm">
+        © 2026 Student Portal | Designed with Tailwind 💙
+    </p>
+</footer>
+
+<!-- Mobile Menu Script -->
+<script>
+    const btn = document.getElementById("menuBtn");
+    const menu = document.getElementById("menu");
+
+    btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+        menu.classList.toggle("flex");
+        menu.classList.toggle("flex-col");
+        menu.classList.toggle("absolute");
+        menu.classList.toggle("top-16");
+        menu.classList.toggle("right-4");
+        menu.classList.toggle("bg-indigo-700");
+        menu.classList.toggle("p-4");
+        menu.classList.toggle("rounded-lg");
+    });
+</script>
 
 </body>
 </html>
